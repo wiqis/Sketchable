@@ -43,18 +43,7 @@ jobs:
           # Extract asset URLs and names
           echo "$RELEASE_JSON" | jq -r '.assets[] | "\(.browser_download_url) \(.name)"' > assets_to_sync.txt
 
-      - name: Check if Release Exists
-        id: check_public
-        shell: bash
-        run: |
-          if gh release view "${{ steps.get_private.outputs.tag_name }}" >/dev/null 2>&1; then
-            echo "exists=true" >> $GITHUB_OUTPUT
-          else
-            echo "exists=false" >> $GITHUB_OUTPUT
-          fi
-
       - name: Sync Release and Assets
-        if: steps.check_public.outputs.exists == 'false'
         shell: bash
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -64,11 +53,12 @@ jobs:
           NAME="${{ steps.get_private.outputs.release_name }}"
           BODY="${{ steps.get_private.outputs.release_body }}"
           
-          echo "Creating release $TAG..."
-          gh release create "$TAG" --title "$NAME" --notes "$BODY"
+          echo "Ensuring release $TAG exists..."
+          gh release create "$TAG" --title "$NAME" --notes "$BODY" || echo "Release $TAG already exists, proceeding to sync assets."
           
           mkdir -p downloads
           while read -r url filename; do
+            if [ -z "$filename" ]; then continue; fi
             echo "Syncing $filename..."
             curl -L -H "Authorization: token $PRIVATE_TOKEN" -o "downloads/$filename" "$url"
             gh release upload "$TAG" "downloads/$filename" --clobber
