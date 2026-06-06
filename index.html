@@ -7,16 +7,21 @@
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
 </head>
-<body>
+<body class="light-theme">
+    <div class="paper-texture"></div>
+    
     <header>
         <nav>
             <div class="logo">Sketchable</div>
-            <div class="nav-links">
-                <a href="#features">Features</a>
-                <a href="#download" class="btn-primary">Download</a>
+            <div class="nav-right">
+                <button id="theme-toggle" aria-label="Toggle Dark Mode">
+                    <span class="sun-icon">☀️</span>
+                    <span class="moon-icon">🌙</span>
+                </button>
+                <a href="#download" class="btn-ink">Get the App</a>
             </div>
         </nav>
     </header>
@@ -24,106 +29,75 @@
     <main>
         <section class="hero">
             <div class="hero-content">
-                <h1>Create without <span class="gradient-text">limits</span>.</h1>
-                <p>A professional-grade drawing experience, available on all your devices. Built with performance and precision in mind.</p>
+                <span class="tag">Digital Canvas</span>
+                <h1>Fine Art, <br><span class="ink-text">Digitally Refined.</span></h1>
+                <p>Sketchable brings the tactile joy of pencil on paper to your digital workflow. Professional tools, minimal distractions.</p>
                 <div class="hero-btns">
-                    <a href="#download" class="btn-primary large">Get Started</a>
-                    <a href="https://play.google.com/store/apps/details?id=com.wakaztahir.sketchapp&hl=en" target="_blank" class="btn-secondary large">Play Store</a>
+                    <a href="#download" class="btn-ink large">Download Latest</a>
+                    <a href="#features" class="btn-outline large">Explore Features</a>
                 </div>
             </div>
-            <div class="hero-visual">
-                <div class="app-mockup">
-                    <div class="canvas-mock">
-                        <!-- Simulated drawing content -->
-                        <div class="stroke s1"></div>
-                        <div class="stroke s2"></div>
-                        <div class="stroke s3"></div>
-                    </div>
-                    <div class="ui-mock tools-left">
-                        <div class="tool-btn active"></div>
-                        <div class="tool-btn"></div>
-                        <div class="tool-btn"></div>
-                        <div class="tool-btn"></div>
-                    </div>
-                    <div class="ui-mock layers-right">
-                        <div class="layer-item active">Layer 1</div>
-                        <div class="layer-item">Layer 2</div>
-                        <div class="layer-item">Background</div>
-                    </div>
+            <div class="hero-image">
+                <div class="sketch-frame">
+                    <img src="https://raw.githubusercontent.com/wiqis/Sketchable/main/app-preview.png" alt="Sketchable Interface" onerror="this.src='https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&w=1000&q=80'">
                 </div>
             </div>
         </section>
 
         <section id="features" class="features">
-            <h2>Powerful Tools</h2>
+            <h2 class="serif-title">Crafted for Artists</h2>
             <div class="feature-grid">
                 <div class="feature-card">
-                    <div class="feature-icon">🎨</div>
-                    <h3>Advanced Brushes</h3>
-                    <p>Fluid, responsive brushes designed for both touch and mouse input.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🥞</div>
                     <h3>Layer Blend Modes</h3>
-                    <p>Multiply, Screen, Overlay, and more. Full control over how your colors interact.</p>
+                    <p>Experience true-to-life color mixing with advanced blending modes including Multiply, Screen, and Overlay.</p>
                 </div>
                 <div class="feature-card">
-                    <div class="feature-icon">🪞</div>
-                    <h3>Mirror Drawing</h3>
-                    <p>Create symmetrical masterpieces with vertical and horizontal mirror axes.</p>
+                    <h3>Radial Symmetry</h3>
+                    <p>Create intricate mandalas and symmetrical patterns with precise mirror axes.</p>
                 </div>
                 <div class="feature-card">
-                    <div class="feature-icon">🔍</div>
-                    <h3>Precision Zoom</h3>
-                    <p>Smooth zoom and pan gestures to focus on every tiny detail.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">💧</div>
-                    <h3>Eyedropper</h3>
-                    <p>Pick any color directly from your canvas with pixel-perfect accuracy.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">💾</div>
-                    <h3>Cross-Platform</h3>
-                    <p>Your work follows you. Seamlessly transition between Android and Desktop.</p>
+                    <h3>Precision Engine</h3>
+                    <p>A custom-built rendering engine that keeps your strokes fluid, even on high-resolution canvases.</p>
                 </div>
             </div>
         </section>
 
         <section id="download" class="download">
-            <div class="download-container">
-                <h2>Download Latest Version</h2>
-                <p id="version-tag">Detecting latest version...</p>
+            <div class="download-box">
+                <h2 class="serif-title">Start Creating</h2>
+                <p id="version-info" class="version-badge">Latest Stable Version</p>
                 
-                <div class="download-grid">
-                    <div class="download-card" id="dl-windows">
-                        <div class="platform-icon">🪟</div>
-                        <h3>Windows</h3>
-                        <a href="#" class="btn-download">Download .msi</a>
+                <div class="download-options">
+                    <div class="dl-group">
+                        <h4>Desktop</h4>
+                        <div class="dl-btns">
+                            <a href="#" id="dl-win" class="dl-link disabled">Windows (.msi)</a>
+                            <a href="#" id="dl-mac" class="dl-link disabled">macOS (.dmg)</a>
+                            <a href="#" id="dl-linux" class="dl-link disabled">Linux (.deb)</a>
+                        </div>
                     </div>
-                    <div class="download-card" id="dl-macos">
-                        <div class="platform-icon">🍎</div>
-                        <h3>macOS</h3>
-                        <a href="#" class="btn-download">Download .dmg</a>
-                    </div>
-                    <div class="download-card" id="dl-linux">
-                        <div class="platform-icon">🐧</div>
-                        <h3>Linux</h3>
-                        <a href="#" class="btn-download">Download .deb</a>
-                    </div>
-                    <div class="download-card" id="dl-android">
-                        <div class="platform-icon">🤖</div>
-                        <h3>Android</h3>
-                        <a href="https://play.google.com/store/apps/details?id=com.wakaztahir.sketchapp&hl=en" class="btn-download">Play Store</a>
+                    <div class="dl-group">
+                        <h4>Mobile</h4>
+                        <div class="dl-btns">
+                            <a href="https://play.google.com/store/apps/details?id=com.wakaztahir.sketchapp&hl=en" target="_blank" class="dl-link active">Google Play Store</a>
+                            <a href="#" id="dl-apk" class="dl-link disabled">Direct APK Download</a>
+                        </div>
                     </div>
                 </div>
-                <p class="direct-apk"><a href="#" id="apk-link">Download APK directly</a></p>
+                
+                <p class="status-note" id="status-msg">Fetching latest release from GitHub...</p>
             </div>
         </section>
     </main>
 
     <footer>
-        <p>&copy; 2026 Sketchable. All rights reserved.</p>
+        <div class="footer-content">
+            <p>&copy; 2026 Sketchable. Designed for the artist in everyone.</p>
+            <div class="footer-links">
+                <a href="https://github.com/wiqis/Sketchable">Public Repo</a>
+                <a href="#">Privacy</a>
+            </div>
+        </div>
     </footer>
 
     <script src="script.js"></script>

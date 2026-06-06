@@ -1,44 +1,72 @@
 const REPO = 'wiqis/Sketchable';
 const API_URL = `https://api.github.com/repos/${REPO}/releases/latest`;
 
+// Theme Toggle Logic
+const themeToggle = document.getElementById('theme-toggle');
+const body = document.body;
+
+themeToggle.addEventListener('click', () => {
+    if (body.classList.contains('light-theme')) {
+        body.classList.replace('light-theme', 'dark-theme');
+        localStorage.setItem('theme', 'dark');
+    } else {
+        body.classList.replace('dark-theme', 'light-theme');
+        localStorage.setItem('theme', 'light');
+    }
+});
+
+// Load saved theme
+const savedTheme = localStorage.getItem('theme');
+if (savedTheme === 'dark') {
+    body.classList.replace('light-theme', 'dark-theme');
+}
+
+// Fetch Latest Release Logic
 async function fetchLatestRelease() {
+    const statusMsg = document.getElementById('status-msg');
+    const versionInfo = document.getElementById('version-info');
+
     try {
         const response = await fetch(API_URL);
-        if (!response.ok) throw new Error('Failed to fetch release info');
+        
+        // Handle 404 (No releases yet)
+        if (response.status === 404) {
+            statusMsg.innerText = "No public releases found yet. The app is being prepared for its first public launch.";
+            versionInfo.innerText = "Coming Soon to Desktop";
+            return;
+        }
+
+        if (!response.ok) throw new Error(`GitHub API error: ${response.status}`);
         
         const data = await response.json();
-        const version = data.tag_name;
+        const tag = data.tag_name;
         const assets = data.assets;
 
-        document.getElementById('version-tag').innerText = `Latest Version: ${version}`;
+        versionInfo.innerText = `Latest Version: ${tag}`;
+        statusMsg.innerText = "Latest stable version is ready for download.";
 
-        // Map assets to download buttons
         assets.forEach(asset => {
             const name = asset.name.toLowerCase();
             const url = asset.browser_download_url;
 
-            if (name.endsWith('.msi')) {
-                updateButton('dl-windows', url);
-            } else if (name.endsWith('.dmg')) {
-                updateButton('dl-macos', url);
-            } else if (name.endsWith('.deb')) {
-                updateButton('dl-linux', url);
-            } else if (name.endsWith('.apk')) {
-                document.getElementById('apk-link').href = url;
-            }
+            if (name.endsWith('.msi')) enableLink('dl-win', url);
+            if (name.endsWith('.dmg')) enableLink('dl-mac', url);
+            if (name.endsWith('.deb')) enableLink('dl-linux', url);
+            if (name.endsWith('.apk')) enableLink('dl-apk', url);
         });
 
     } catch (error) {
-        console.error('Error fetching latest release:', error);
-        document.getElementById('version-tag').innerText = 'Could not load latest version. Please check back later.';
+        console.error('Fetch error:', error);
+        statusMsg.innerText = "Note: Could not fetch latest release automatically. Please check the Play Store for mobile.";
     }
 }
 
-function updateButton(id, url) {
-    const card = document.getElementById(id);
-    if (card) {
-        const btn = card.querySelector('.btn-download');
-        btn.href = url;
+function enableLink(id, url) {
+    const el = document.getElementById(id);
+    if (el) {
+        el.href = url;
+        el.classList.remove('disabled');
+        el.classList.add('active');
     }
 }
 
