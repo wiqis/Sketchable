@@ -22,14 +22,12 @@ if (localStorage.getItem('sketchable-theme') === 'dark') {
 
 // Release Fetching
 async function initReleases() {
-    const versionDisplay = document.getElementById('version-display');
     const statusHint = document.getElementById('status-hint');
 
     try {
         const response = await fetch(API_URL);
         
         if (response.status === 404) {
-            versionDisplay.innerText = "v1.0.54 — Coming Soon";
             statusHint.innerText = "Note: Public desktop releases are currently being prepared.";
             return;
         }
@@ -37,7 +35,6 @@ async function initReleases() {
         if (!response.ok) throw new Error('API Error');
 
         const data = await response.json();
-        versionDisplay.innerText = `Latest Stable: ${data.tag_name}`;
         
         data.assets.forEach(asset => {
             const name = asset.name.toLowerCase();
@@ -51,7 +48,6 @@ async function initReleases() {
 
     } catch (e) {
         console.warn('Release fetch failed. This is expected if the public repo has no releases yet.');
-        versionDisplay.innerText = "v1.0.54";
     }
 }
 
