@@ -23,35 +23,44 @@ if (localStorage.getItem('sketchable-theme') === 'dark') {
 // Release Fetching
 async function initReleases() {
     const statusMsg = document.getElementById('status-msg');
+    if (!statusMsg) return;
 
     try {
+        console.log('Fetching latest release from:', API_URL);
         const response = await fetch(API_URL);
         
         if (response.status === 404) {
-            statusMsg.innerText = "Note: Public desktop releases are currently being prepared.";
+            statusMsg.textContent = "Note: Public desktop releases are currently being prepared.";
             return;
         }
 
-        if (!response.ok) throw new Error('API Error');
+        if (!response.ok) throw new Error(`API Error: ${response.status}`);
 
         const data = await response.json();
-        statusMsg.innerText = `Latest version found. Desktop downloads are now active.`;
+        console.log('Latest release data:', data);
         
+        let foundPlatforms = [];
+
         data.assets.forEach(asset => {
             const name = asset.name.toLowerCase();
             const url = asset.browser_download_url;
+            console.log('Checking asset:', name);
 
-            if (name.endsWith('.msi')) bindLink('dl-win', url);
-            if (name.endsWith('.dmg')) bindLink('dl-mac', url);
-            if (name.endsWith('.deb')) bindLink('dl-linux', url);
-            if (name.endsWith('.apk')) bindLink('dl-apk', url);
+            if (name.endsWith('.msi')) { bindLink('dl-win', url); foundPlatforms.push('Windows'); }
+            if (name.endsWith('.dmg')) { bindLink('dl-mac', url); foundPlatforms.push('macOS'); }
+            if (name.endsWith('.deb')) { bindLink('dl-linux', url); foundPlatforms.push('Linux'); }
+            if (name.endsWith('.apk')) { bindLink('dl-apk', url); foundPlatforms.push('Android (Direct)'); }
         });
 
-    } catch (e) {
-        console.warn('Release fetch failed. This is expected if the public repo has no releases yet.');
-        if (statusMsg) {
-            statusMsg.innerText = "Note: Public desktop releases are currently being prepared.";
+        if (foundPlatforms.length > 0) {
+            statusMsg.textContent = `Latest version found for: ${foundPlatforms.join(', ')}.`;
+        } else {
+            statusMsg.textContent = "Latest version found, but no matching desktop binaries were detected yet.";
         }
+
+    } catch (e) {
+        console.error('Release fetch error:', e);
+        statusMsg.textContent = "Note: Public desktop releases are currently being prepared.";
     }
 }
 
