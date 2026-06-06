@@ -22,32 +22,36 @@ if (localStorage.getItem('sketchable-theme') === 'dark') {
 
 // Release Fetching
 async function initReleases() {
-    const statusHint = document.getElementById('status-hint');
+    const statusMsg = document.getElementById('status-msg');
 
     try {
         const response = await fetch(API_URL);
         
         if (response.status === 404) {
-            statusHint.innerText = "Note: Public desktop releases are currently being prepared.";
+            statusMsg.innerText = "Note: Public desktop releases are currently being prepared.";
             return;
         }
 
         if (!response.ok) throw new Error('API Error');
 
         const data = await response.json();
+        statusMsg.innerText = `Latest version found. Desktop downloads are now active.`;
         
         data.assets.forEach(asset => {
             const name = asset.name.toLowerCase();
             const url = asset.browser_download_url;
 
-            if (name.endsWith('.msi')) bindLink('dl-windows', url);
-            if (name.endsWith('.dmg')) bindLink('dl-macos', url);
+            if (name.endsWith('.msi')) bindLink('dl-win', url);
+            if (name.endsWith('.dmg')) bindLink('dl-mac', url);
             if (name.endsWith('.deb')) bindLink('dl-linux', url);
             if (name.endsWith('.apk')) bindLink('dl-apk', url);
         });
 
     } catch (e) {
         console.warn('Release fetch failed. This is expected if the public repo has no releases yet.');
+        if (statusMsg) {
+            statusMsg.innerText = "Note: Public desktop releases are currently being prepared.";
+        }
     }
 }
 
