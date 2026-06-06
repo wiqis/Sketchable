@@ -3,147 +3,100 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sketchable — Professional Drawing Experience</title>
+    <title>Sketchable — Professional Drawing App</title>
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
 </head>
 <body class="light-theme">
-    <div class="paper-grain"></div>
-    <div class="vignette"></div>
-
+    <div class="paper-texture"></div>
+    
     <header>
-        <nav class="container">
-            <a href="#" class="logo">Sketchable<span>.</span></a>
-            <div class="nav-actions">
-                <button id="theme-toggle" class="icon-btn" title="Toggle Theme">
-                    <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
-                    <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        <nav>
+            <div class="logo">Sketchable</div>
+            <div class="nav-right">
+                <button id="theme-toggle" aria-label="Toggle Dark Mode">
+                    <span class="sun-icon">☀️</span>
+                    <span class="moon-icon">🌙</span>
                 </button>
-                <a href="#download" class="btn-primary">Download App</a>
+                <a href="#download" class="btn-ink">Get the App</a>
             </div>
         </nav>
     </header>
 
     <main>
-        <section class="hero container">
+        <section class="hero">
             <div class="hero-content">
-                <div class="kicker">Artist-First Design</div>
-                <h1>The canvas that feels like <span class="ink-underline">paper.</span></h1>
-                <p>Sketchable is a professional drawing tool that bridges the gap between tactile sensation and digital power. No clutter. Just you and your art.</p>
+                <span class="tag">Digital Canvas</span>
+                <h1>Fine Art, <br><span class="ink-text">Digitally Refined.</span></h1>
+                <p>Sketchable brings the tactile joy of pencil on paper to your digital workflow. Professional tools, minimal distractions.</p>
                 <div class="hero-btns">
-                    <a href="#download" class="btn-primary">Get the Latest Version</a>
-                    <a href="#features" class="btn-secondary">Learn More</a>
+                    <a href="#download" class="btn-ink large">Download Latest</a>
+                    <a href="#features" class="btn-outline large">Explore Features</a>
                 </div>
             </div>
-            <div class="hero-visual">
-                <div class="sketchbook">
-                    <div class="sketchbook-page">
-                        <div class="drawing-preview">
-                            <svg viewBox="0 0 400 300" class="line-art">
-                                <path d="M50 250 Q 100 50, 200 150 T 350 100" fill="none" stroke="currentColor" stroke-width="2" stroke-dasharray="1000" stroke-dashoffset="1000">
-                                    <animate attributeName="stroke-dashoffset" from="1000" to="0" dur="3s" fill="freeze" />
-                                </path>
-                                <path d="M80 200 Q 150 280, 250 180" fill="none" stroke="currentColor" stroke-width="1" opacity="0.5" stroke-dasharray="500" stroke-dashoffset="500">
-                                    <animate attributeName="stroke-dashoffset" from="500" to="0" dur="2s" begin="1s" fill="freeze" />
-                                </path>
-                            </svg>
-                        </div>
-                    </div>
+            <div class="hero-image">
+                <div class="sketch-frame">
+                    <img src="https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&w=1000&q=80" alt="Sketchable Interface">
                 </div>
             </div>
         </section>
 
-        <section id="features" class="features-section">
-            <div class="container">
-                <div class="section-header">
-                    <h2>Master the Medium</h2>
-                    <p>Designed for precision and fluid movement.</p>
+        <section id="features" class="features">
+            <h2 class="serif-title">Crafted for Artists</h2>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h3>Layer Blend Modes</h3>
+                    <p>Experience true-to-life color mixing with advanced blending modes including Multiply, Screen, and Overlay.</p>
                 </div>
-                <div class="feature-grid">
-                    <div class="feature-card">
-                        <div class="icon">✨</div>
-                        <h3>Layer Blend Modes</h3>
-                        <p>Seamlessly mix colors with professional-grade Multiply, Screen, and Overlay modes.</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="icon">📐</div>
-                        <h3>Radial Symmetry</h3>
-                        <p>Create perfect mandalas and symmetrical art with real-time mirror axes.</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="icon">🖊️</div>
-                        <h3>Stabilized Strokes</h3>
-                        <p>Beautiful, smooth lines regardless of your device's pressure sensitivity.</p>
-                    </div>
+                <div class="feature-card">
+                    <h3>Radial Symmetry</h3>
+                    <p>Create intricate mandalas and symmetrical patterns with precise mirror axes.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Precision Engine</h3>
+                    <p>A custom-built rendering engine that keeps your strokes fluid, even on high-resolution canvases.</p>
                 </div>
             </div>
         </section>
 
-        <section id="download" class="download-section">
-            <div class="container">
-                <div class="download-card">
-                    <div class="card-inner">
-                        <h2>Start your next masterpiece.</h2>
-                        <div id="version-display" class="version-tag">Checking latest stable...</div>
-                        
-                        <div class="platforms">
-                            <div class="platform-column">
-                                <h3>Desktop</h3>
-                                <div class="dl-list">
-                                    <a href="#" id="dl-windows" class="dl-btn disabled">
-                                        <span class="p-icon">🪟</span> Windows (.msi)
-                                    </a>
-                                    <a href="#" id="dl-macos" class="dl-btn disabled">
-                                        <span class="p-icon">🍎</span> macOS (.dmg)
-                                    </a>
-                                    <a href="#" id="dl-linux" class="dl-btn disabled">
-                                        <span class="p-icon">🐧</span> Linux (.deb)
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="platform-column">
-                                <h3>Mobile</h3>
-                                <div class="dl-list">
-                                    <a href="https://play.google.com/store/apps/details?id=com.wakaztahir.sketchapp&hl=en" target="_blank" class="dl-btn active">
-                                        <span class="p-icon">🤖</span> Google Play
-                                    </a>
-                                    <a href="#" id="dl-apk" class="dl-btn disabled">
-                                        <span class="p-icon">📦</span> Direct APK
-                                    </a>
-                                </div>
-                            </div>
+        <section id="download" class="download">
+            <div class="download-box">
+                <h2 class="serif-title">Start Creating</h2>
+                <p id="version-info" class="version-badge">Latest Stable Version</p>
+                
+                <div class="download-options">
+                    <div class="dl-group">
+                        <h4>Desktop</h4>
+                        <div class="dl-btns">
+                            <a href="#" id="dl-win" class="dl-link disabled">Windows (.msi)</a>
+                            <a href="#" id="dl-mac" class="dl-link disabled">macOS (.dmg)</a>
+                            <a href="#" id="dl-linux" class="dl-link disabled">Linux (.deb)</a>
                         </div>
-                        <p id="status-hint" class="status-hint">Direct downloads are synced from the private release vault.</p>
+                    </div>
+                    <div class="dl-group">
+                        <h4>Mobile</h4>
+                        <div class="dl-btns">
+                            <a href="https://play.google.com/store/apps/details?id=com.wakaztahir.sketchapp&hl=en" target="_blank" class="dl-link active">Google Play Store</a>
+                            <a href="#" id="dl-apk" class="dl-link disabled">Direct APK Download</a>
+                        </div>
                     </div>
                 </div>
+                
+                <p class="status-note" id="status-msg">Fetching latest release from GitHub...</p>
             </div>
         </section>
     </main>
 
     <footer>
-        <div class="container footer-grid">
-            <div class="footer-info">
-                <div class="logo">Sketchable<span>.</span></div>
-                <p>A professional drawing app built for creators who value the feel of physical media.</p>
-            </div>
+        <div class="footer-content">
+            <p>&copy; 2026 Sketchable. Designed for the artist in everyone.</p>
             <div class="footer-links">
-                <div class="link-group">
-                    <h4>Project</h4>
-                    <a href="https://github.com/wiqis/Sketchable">Public Repo</a>
-                    <a href="#">Roadmap</a>
-                </div>
-                <div class="link-group">
-                    <h4>Legal</h4>
-                    <a href="#">Privacy Policy</a>
-                    <a href="#">Terms of Use</a>
-                </div>
+                <a href="https://github.com/wiqis/Sketchable">Public Repo</a>
+                <a href="#">Privacy</a>
             </div>
-        </div>
-        <div class="copyright container">
-            &copy; 2026 Sketchable. All rights reserved.
         </div>
     </footer>
 
