@@ -12,6 +12,9 @@ jobs:
   sync:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout Public Repo
+        uses: actions/checkout@v4
+
       - name: Fetch Latest Private Release
         id: get_private
         shell: bash
@@ -39,9 +42,6 @@ jobs:
           
           # Extract asset URLs and names
           echo "$RELEASE_JSON" | jq -r '.assets[] | "\(.browser_download_url) \(.name)"' > assets_to_sync.txt
-
-      - name: Checkout Public Repo
-        uses: actions/checkout@v4
 
       - name: Check if Release Exists
         id: check_public
