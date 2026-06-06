@@ -1,0 +1,72 @@
+name: Sync Releases from Private Repo
+
+on:
+  schedule:
+    - cron: '0 0 * * *' # Run every day at midnight
+  workflow_dispatch: # Allow manual trigger
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Fetch Latest Private Release
+        id: get_private
+        shell: bash
+        env:
+          GITHUB_TOKEN: ${{ secrets.PRIVATE_REPO_TOKEN }}
+        run: |
+          # Get latest release from private repo
+          RELEASE_JSON=$(curl -s -H "Authorization: token $GITHUB_TOKEN" \
+            "https://api.github.com/repos/wiqis/sketchable-kmp/releases/latest")
+          
+          TAG_NAME=$(echo "$RELEASE_JSON" | jq -r .tag_name)
+          RELEASE_NAME=$(echo "$RELEASE_JSON" | jq -r .name)
+          RELEASE_BODY=$(echo "$RELEASE_JSON" | jq -r .body)
+          
+          if [ "$TAG_NAME" == "null" ]; then
+            echo "Error: Could not fetch private release. Check PRIVATE_REPO_TOKEN."
+            exit 1
+          fi
+          
+          echo "tag_name=$TAG_NAME" >> $GITHUB_OUTPUT
+          echo "release_name=$RELEASE_NAME" >> $GITHUB_OUTPUT
+          echo "release_body<<EOF" >> $GITHUB_OUTPUT
+          echo "$RELEASE_BODY" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+          
+          # Extract asset URLs and names
+          echo "$RELEASE_JSON" | jq -r '.assets[] | "\(.browser_download_url) \(.name)"' > assets_to_sync.txt
+
+      - name: Checkout Public Repo
+        uses: actions/checkout@v4
+
+      - name: Check if Release Exists
+        id: check_public
+        shell: bash
+        run: |
+          if gh release view "${{ steps.get_private.outputs.tag_name }}" >/dev/null 2>&1; then
+            echo "exists=true" >> $GITHUB_OUTPUT
+          else
+            echo "exists=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Sync Release and Assets
+        if: steps.check_public.outputs.exists == 'false'
+        shell: bash
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PRIVATE_TOKEN: ${{ secrets.PRIVATE_REPO_TOKEN }}
+        run: |
+          TAG="${{ steps.get_private.outputs.tag_name }}"
+          NAME="${{ steps.get_private.outputs.release_name }}"
+          BODY="${{ steps.get_private.outputs.release_body }}"
+          
+          echo "Creating release $TAG..."
+          gh release create "$TAG" --title "$NAME" --notes "$BODY"
+          
+          mkdir -p downloads
+          while read -r url filename; do
+            echo "Syncing $filename..."
+            curl -L -H "Authorization: token $PRIVATE_TOKEN" -o "downloads/$filename" "$url"
+            gh release upload "$TAG" "downloads/$filename" --clobber
+          done < assets_to_sync.txt
