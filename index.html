@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sketchable — Professional Drawing App</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">Sketchable</div>
+            <div class="nav-links">
+                <a href="#features">Features</a>
+                <a href="#download" class="btn-primary">Download</a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Create without <span class="gradient-text">limits</span>.</h1>
+                <p>A professional-grade drawing experience, available on all your devices. Built with performance and precision in mind.</p>
+                <div class="hero-btns">
+                    <a href="#download" class="btn-primary large">Get Started</a>
+                    <a href="https://play.google.com/store/apps/details?id=com.wakaztahir.sketchapp&hl=en" target="_blank" class="btn-secondary large">Play Store</a>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="app-mockup">
+                    <div class="canvas-mock">
+                        <!-- Simulated drawing content -->
+                        <div class="stroke s1"></div>
+                        <div class="stroke s2"></div>
+                        <div class="stroke s3"></div>
+                    </div>
+                    <div class="ui-mock tools-left">
+                        <div class="tool-btn active"></div>
+                        <div class="tool-btn"></div>
+                        <div class="tool-btn"></div>
+                        <div class="tool-btn"></div>
+                    </div>
+                    <div class="ui-mock layers-right">
+                        <div class="layer-item active">Layer 1</div>
+                        <div class="layer-item">Layer 2</div>
+                        <div class="layer-item">Background</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="features" class="features">
+            <h2>Powerful Tools</h2>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🎨</div>
+                    <h3>Advanced Brushes</h3>
+                    <p>Fluid, responsive brushes designed for both touch and mouse input.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🥞</div>
+                    <h3>Layer Blend Modes</h3>
+                    <p>Multiply, Screen, Overlay, and more. Full control over how your colors interact.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🪞</div>
+                    <h3>Mirror Drawing</h3>
+                    <p>Create symmetrical masterpieces with vertical and horizontal mirror axes.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔍</div>
+                    <h3>Precision Zoom</h3>
+                    <p>Smooth zoom and pan gestures to focus on every tiny detail.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💧</div>
+                    <h3>Eyedropper</h3>
+                    <p>Pick any color directly from your canvas with pixel-perfect accuracy.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💾</div>
+                    <h3>Cross-Platform</h3>
+                    <p>Your work follows you. Seamlessly transition between Android and Desktop.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="download" class="download">
+            <div class="download-container">
+                <h2>Download Latest Version</h2>
+                <p id="version-tag">Detecting latest version...</p>
+                
+                <div class="download-grid">
+                    <div class="download-card" id="dl-windows">
+                        <div class="platform-icon">🪟</div>
+                        <h3>Windows</h3>
+                        <a href="#" class="btn-download">Download .msi</a>
+                    </div>
+                    <div class="download-card" id="dl-macos">
+                        <div class="platform-icon">🍎</div>
+                        <h3>macOS</h3>
+                        <a href="#" class="btn-download">Download .dmg</a>
+                    </div>
+                    <div class="download-card" id="dl-linux">
+                        <div class="platform-icon">🐧</div>
+                        <h3>Linux</h3>
+                        <a href="#" class="btn-download">Download .deb</a>
+                    </div>
+                    <div class="download-card" id="dl-android">
+                        <div class="platform-icon">🤖</div>
+                        <h3>Android</h3>
+                        <a href="https://play.google.com/store/apps/details?id=com.wakaztahir.sketchapp&hl=en" class="btn-download">Play Store</a>
+                    </div>
+                </div>
+                <p class="direct-apk"><a href="#" id="apk-link">Download APK directly</a></p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Sketchable. All rights reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

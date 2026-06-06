@@ -1,0 +1,375 @@
+:root {
+    --bg: #0a0a0c;
+    --fg: #f4f4f7;
+    --primary: #6366f1;
+    --primary-hover: #4f46e5;
+    --secondary: #1f1f23;
+    --secondary-hover: #2d2d33;
+    --accent: #ec4899;
+    --card-bg: #16161a;
+    --text-muted: #94a3b8;
+    --border: #27272a;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg);
+    color: var(--fg);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.2s ease;
+}
+
+/* Header & Nav */
+header {
+    padding: 1.5rem 2rem;
+    position: sticky;
+    top: 0;
+    background: rgba(10, 10, 12, 0.8);
+    backdrop-filter: blur(12px);
+    z-index: 100;
+    border-bottom: 1px solid var(--border);
+}
+
+nav {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: 800;
+    letter-spacing: -0.05em;
+    background: linear-gradient(to right, var(--primary), var(--accent));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.nav-links {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+}
+
+.btn-primary {
+    background-color: var(--primary);
+    color: white;
+    padding: 0.6rem 1.2rem;
+    border-radius: 8px;
+    font-weight: 600;
+}
+
+.btn-primary:hover {
+    background-color: var(--primary-hover);
+    transform: translateY(-2px);
+}
+
+.btn-primary.large {
+    padding: 1rem 2rem;
+    font-size: 1.1rem;
+}
+
+.btn-secondary {
+    background-color: var(--secondary);
+    padding: 0.6rem 1.2rem;
+    border-radius: 8px;
+    font-weight: 600;
+    border: 1px solid var(--border);
+}
+
+.btn-secondary:hover {
+    background-color: var(--secondary-hover);
+}
+
+.btn-secondary.large {
+    padding: 1rem 2rem;
+    font-size: 1.1rem;
+}
+
+/* Hero Section */
+.hero {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 6rem auto;
+    padding: 0 2rem;
+    gap: 4rem;
+}
+
+.hero-content {
+    flex: 1;
+}
+
+.hero h1 {
+    font-size: 4rem;
+    font-weight: 800;
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+    letter-spacing: -0.02em;
+}
+
+.gradient-text {
+    background: linear-gradient(to right, var(--primary), var(--accent));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.hero p {
+    font-size: 1.25rem;
+    color: var(--text-muted);
+    margin-bottom: 2.5rem;
+    max-width: 500px;
+}
+
+.hero-btns {
+    display: flex;
+    gap: 1rem;
+}
+
+.hero-visual {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.app-mockup {
+    background: #27272a;
+    width: 500px;
+    height: 350px;
+    border-radius: 20px;
+    position: relative;
+    border: 4px solid #3f3f46;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+}
+
+.canvas-mock {
+    width: 100%;
+    height: 100%;
+    background: #18181b;
+    position: relative;
+}
+
+.stroke {
+    position: absolute;
+    background: var(--primary);
+    border-radius: 50px;
+}
+
+.s1 { width: 100px; height: 10px; top: 100px; left: 50px; transform: rotate(-15deg); filter: blur(2px); opacity: 0.8; }
+.s2 { width: 150px; height: 15px; top: 150px; left: 150px; transform: rotate(10deg); background: var(--accent); filter: blur(1px); }
+.s3 { width: 80px; height: 8px; top: 200px; left: 80px; transform: rotate(45deg); background: #facc15; }
+
+.ui-mock {
+    position: absolute;
+    background: rgba(39, 39, 42, 0.9);
+    padding: 0.5rem;
+    border-radius: 8px;
+    border: 1px solid rgba(255,255,255,0.1);
+}
+
+.tools-left {
+    top: 50%;
+    left: 10px;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.tool-btn {
+    width: 32px;
+    height: 32px;
+    background: #3f3f46;
+    border-radius: 4px;
+}
+
+.tool-btn.active {
+    background: var(--primary);
+}
+
+.layers-right {
+    top: 20px;
+    right: 10px;
+    width: 100px;
+}
+
+.layer-item {
+    font-size: 0.7rem;
+    padding: 0.3rem;
+    background: #3f3f46;
+    margin-bottom: 4px;
+    border-radius: 2px;
+}
+
+.layer-item.active {
+    border-left: 2px solid var(--primary);
+}
+
+/* Features */
+.features {
+    max-width: 1200px;
+    margin: 8rem auto;
+    padding: 0 2rem;
+    text-align: center;
+}
+
+.features h2 {
+    font-size: 2.5rem;
+    margin-bottom: 4rem;
+}
+
+.feature-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.feature-card {
+    background: var(--card-bg);
+    padding: 2.5rem;
+    border-radius: 16px;
+    text-align: left;
+    border: 1px solid var(--border);
+    transition: transform 0.3s ease;
+}
+
+.feature-card:hover {
+    transform: translateY(-10px);
+    border-color: var(--primary);
+}
+
+.feature-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.feature-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.feature-card p {
+    color: var(--text-muted);
+}
+
+/* Download Section */
+.download {
+    background: linear-gradient(to bottom, var(--bg), #0f172a);
+    padding: 8rem 2rem;
+}
+
+.download-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.download h2 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+#version-tag {
+    color: var(--primary);
+    font-weight: 600;
+    margin-bottom: 4rem;
+}
+
+.download-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+}
+
+.download-card {
+    background: var(--secondary);
+    padding: 2rem;
+    border-radius: 16px;
+    border: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.platform-icon {
+    font-size: 3rem;
+}
+
+.btn-download {
+    background: white;
+    color: black;
+    padding: 0.8rem 1.5rem;
+    border-radius: 8px;
+    font-weight: 700;
+    width: 100%;
+}
+
+.btn-download:hover {
+    background: #e2e8f0;
+}
+
+.direct-apk {
+    margin-top: 3rem;
+    color: var(--text-muted);
+}
+
+.direct-apk a:hover {
+    color: white;
+    text-decoration: underline;
+}
+
+/* Footer */
+footer {
+    padding: 4rem 2rem;
+    border-top: 1px solid var(--border);
+    text-align: center;
+    color: var(--text-muted);
+}
+
+/* Responsive */
+@media (max-width: 968px) {
+    .hero {
+        flex-direction: column;
+        text-align: center;
+        margin: 4rem auto;
+    }
+    
+    .hero h1 {
+        font-size: 3rem;
+    }
+    
+    .hero p {
+        margin: 0 auto 2.5rem;
+    }
+    
+    .hero-btns {
+        justify-content: center;
+    }
+    
+    .app-mockup {
+        width: 100%;
+        max-width: 400px;
+        height: 280px;
+    }
+}
