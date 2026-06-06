@@ -201,9 +201,38 @@ nav {
 .status-note { margin-top: 4rem; font-size: 0.95rem; color: var(--ink-muted); font-style: italic; }
 
 footer { padding: 6rem 2rem; border-top: 1px solid var(--border); }
-.footer-content { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; color: var(--ink-muted); }
-.footer-links { display: flex; gap: 3rem; }
-.footer-links a:hover { color: var(--ink); }
+.footer-content { 
+    max-width: 1200px; 
+    margin: 0 auto; 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center;
+    color: var(--ink-muted); 
+    font-size: 0.9rem;
+}
+.footer-links { display: flex; gap: 2.5rem; }
+.footer-links a {
+    position: relative;
+    padding: 0.2rem 0;
+    opacity: 0.8;
+}
+.footer-links a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background-color: var(--ink);
+    transition: width 0.3s ease;
+}
+.footer-links a:hover { 
+    opacity: 1;
+    color: var(--ink); 
+}
+.footer-links a:hover::after {
+    width: 100%;
+}
 
 @media (max-width: 900px) {
     .hero { flex-direction: column; text-align: center; }
